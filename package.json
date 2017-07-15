@@ -1,0 +1,20 @@
+{
+    "name": "FIAPClass",
+    "description": "FIAP Class - API",
+    "author": "Victor Shinya <contato@victorshinya.com.br>",
+    "version": "0.0.1",
+    "license": "Apache-2.0",
+    "repository": "https://github.com/victorshinya/fiap-class",
+    "main": "server.js",
+    "scripts": {
+        "start": "node server.js"
+    },
+    "engines": {
+        "node": "ˆ8.x",
+        "npm": "ˆ5.x"
+    },
+    "dependencies": {
+        "express": "^4.15.3",
+        "mongoose": "^4.11.1"
+    }
+}
