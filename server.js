@@ -14,6 +14,10 @@ mongoose.connection.once('Connection error', console.error);
 var schemas = {};
 schemas.user = require(__dirname + '/models/user.js')(mongoose);
 
+// Get all controllers
+var controllers = {};
+controllers.user = require(__dirname + '/controllers/user.js')(schemas);
+
 const hostname = '127.0.0.1';
 const port = '3000';
 
