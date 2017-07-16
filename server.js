@@ -25,12 +25,9 @@ routes.router = require(__dirname + '/router.js')(express, routes);
 routes.middlewares = {};
 routes.middlewares.user = require(__dirname + '/middlewares/user.js')(controllers.user);
 
-const hostname = '127.0.0.1';
-const port = '3000';
-
 const app = express();
 routes.router(app);
 
-return http.createServer(app).listen(port, hostname, () => {
-    console.log(`Server running at http://${hostname}:${port}/`);
+return http.createServer(app).listen(process.env.PORT || 3000, () => {
+    console.log(`Server running at port 3000`);
 });
