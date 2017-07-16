@@ -18,10 +18,18 @@ schemas.user = require(__dirname + '/models/user.js')(mongoose);
 var controllers = {};
 controllers.user = require(__dirname + '/controllers/user.js')(schemas);
 
+// Get all routes
+var routes = {};
+routes.router = require(__dirname + '/router.js')(express, routes);
+
+routes.middlewares = {};
+routes.middlewares.user = require(__dirname + '/middlewares/user.js')(controllers.user);
+
 const hostname = '127.0.0.1';
 const port = '3000';
 
 const app = express();
+routes.router(app);
 
 return http.createServer(app).listen(port, hostname, () => {
     console.log(`Server running at http://${hostname}:${port}/`);
