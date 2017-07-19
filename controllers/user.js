@@ -1,6 +1,6 @@
 module.exports = (schemas) => {
 
-    const user = schemas.user;
+    const User = schemas.user;
 
     return {
         get: (req, res) => {
@@ -12,7 +12,7 @@ module.exports = (schemas) => {
                 return res.json({ success: false, message: 'Invalid password' });
             } else {
                 const query = { email: email, password: password };
-                user.findOne(query, (error, result) => {
+                User.findOne(query, (error, result) => {
                     if (error) return res.json({ success: false, message: error });
                     if (!result) {
                         return res.json({ success: false, message: 'User not found' });
@@ -36,7 +36,7 @@ module.exports = (schemas) => {
             } else if (!lastName) {
                 return res.json({ success: false, message: 'Invalid last name' });
             } else {
-                const user = new user();
+                var user = new User();
                 user.email = email;
                 user.password = password;
                 user.name = name;

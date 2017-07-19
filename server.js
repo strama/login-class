@@ -6,6 +6,8 @@ const http = require('http');
 const mongoose = require('mongoose');
 // https://github.com/motdotla/dotenv
 const dotenv = require('dotenv').load();
+// https://github.com/expressjs/body-parser
+const bodyParser = require('body-parser');
 
 mongoose.connect(process.env.MONGODB, {
     useMongoClient: true
@@ -28,6 +30,8 @@ routes.middlewares = {};
 routes.middlewares.user = require(__dirname + '/middlewares/user.js')(controllers.user);
 
 const app = express();
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 routes.router(app);
 
 return http.createServer(app).listen(process.env.PORT || 3000, () => {
