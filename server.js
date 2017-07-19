@@ -4,8 +4,10 @@ const express = require('express');
 const http = require('http');
 // https://github.com/Automattic/mongoose
 const mongoose = require('mongoose');
+// https://github.com/motdotla/dotenv
+const dotenv = require('dotenv').load();
 
-mongoose.connect('mongodb://root:root@ds155192.mlab.com:55192/fiap-class', {
+mongoose.connect(process.env.MONGODB, {
     useMongoClient: true
 });
 mongoose.connection.once('Connection error', console.error);
