@@ -1,4 +1,4 @@
-module.exports = (controller) => {
+module.exports = (controller, passport) => {
 
     return (router) => {
         router.post('/login', (req, res) => {
@@ -7,6 +7,10 @@ module.exports = (controller) => {
         
         router.post('/register', (req, res) => {
             controller.register(req, res);
+        });
+
+        router.post('/auth', passport.authenticate('jwt', { session: false }), (req, res) => {
+            controller.auth(req, res);
         });
     }
 }
