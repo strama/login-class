@@ -48,8 +48,8 @@ let options = {};
 options.jwtFromRequest = extractJwt.fromAuthHeader();
 options.secretOrKey = 'HAUHAUHAU';
 passport.use(new jwtStrategy(options, (jwt_payload, done) => {
-    const User = schemas.User;
-    User.findOneById(jwt_payload._doc._id, (err, user) => {
+    const User = schemas.user;
+    User.findById(jwt_payload._doc._id, (err, user) => {
         if (err) return done(err, false);
         if (user) {
             return done(null, user);
