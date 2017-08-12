@@ -34,6 +34,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 routes.router(app);
 
-return http.createServer(app).listen(process.env.PORT || 3000, () => {
-    console.log(`Server running at port 3000`);
+return http.createServer(app).listen(process.env.PORT || 8080, () => {
+    console.log(`Server running at port 8080`);
 });
