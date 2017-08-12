@@ -4,8 +4,8 @@ module.exports = (express, routes) => {
 
         var router = express.Router();
 
-        for (key in routes.middlewares) {
-            routes.middlewares[key](router);
+        for (key in routes.routes) {
+            routes.routes[key](router);
         }
 
         app.use('/api', router);

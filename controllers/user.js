@@ -3,9 +3,9 @@ module.exports = (schemas) => {
     const User = schemas.user;
 
     return {
-        get: (req, res) => {
-            const email = req.query.email;
-            const password = req.query.password;
+        login: (req, res) => {
+            const email = req.body.email;
+            const password = req.body.password;
             if (!email) {
                 return res.json({ success: false, message: 'Invalid e-mail' });
             } else if (!password) {
@@ -17,12 +17,12 @@ module.exports = (schemas) => {
                     if (!result) {
                         return res.json({ success: false, message: 'User not found' });
                     } else {
-                        return res.json({ success: true, message: 'Success', user: result });
+                        return res.json({ success: true, message: 'Success', user: { _id: result._id, email: result.email, name: result.name, last_name: result.last_name } });
                     }
                 });
             }
         },
-        post: (req, res) => {
+        register: (req, res) => {
             const email = req.body.email;
             const password = req.body.password;
             const name = req.body.name;
