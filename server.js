@@ -26,8 +26,8 @@ controllers.user = require(__dirname + '/controllers/user.js')(schemas);
 var routes = {};
 routes.router = require(__dirname + '/router.js')(express, routes);
 
-routes.middlewares = {};
-routes.middlewares.user = require(__dirname + '/middlewares/user.js')(controllers.user);
+routes.routes = {};
+routes.routes.user = require(__dirname + '/routes/user.js')(controllers.user);
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
