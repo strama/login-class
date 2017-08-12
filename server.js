@@ -9,7 +9,7 @@ const dotenv = require('dotenv').load();
 // https://github.com/expressjs/body-parser
 const bodyParser = require('body-parser');
 
-mongoose.connect('mongodb://root:root@ds139899.mlab.com:39899/fiap-class', {
+mongoose.connect(process.env.MONGODB, {
     useMongoClient: true
 });
 mongoose.connection.once('Connection error', console.error);
