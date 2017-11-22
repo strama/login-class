@@ -17,8 +17,10 @@ const passportJwt = require('passport-jwt');
 mongoose.connect(process.env.MONGODB, {
     useMongoClient: true
 });
-mongoose.connection.once('Connection error', console.error);
-
+mongoose.connection.on('error', console.error.bind(console, 'MongoDB connection error:'));
+mongoose.connection.once('open', () => {
+    console.log('MongoDB connected');
+});
 /**
  * Express
  */
