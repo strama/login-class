@@ -1,0 +1,13 @@
+<main>
+  <div class="container">
+    <div class="row">
+      <ul class="ds-btn">
+        <li class="btn btn-lg btn-info col-lg-5 col-sm-12" *ngFor="let api of apis">
+          <i class="glyphicon glyphicon-list pull-left"></i>
+          <h4>{{ api.name }}</h4>
+          <p>{{ api.route }}</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+</main>
