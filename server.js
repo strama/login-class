@@ -12,35 +12,20 @@ const bodyParser = require('body-parser');
 const passport = require('passport');
 // https://github.com/themikenicholson/passport-jwt
 const passportJwt = require('passport-jwt');
-// https://github.com/dcodeIO/bcrypt.js
-const bcrypt = require('bcryptjs');
 
 mongoose.connect(process.env.MONGODB, {
     useMongoClient: true
 });
 mongoose.connection.once('Connection error', console.error);
 
-// Get all schemas
-var schemas = {};
-schemas.user = require(__dirname + '/models/user.js')(mongoose);
-
-// Get all controllers
-var controllers = {};
-controllers.user = require(__dirname + '/controllers/user.js')(schemas, bcrypt);
-
-// Get all routes
-var routes = {};
-routes.router = require(__dirname + '/router.js')(express, routes);
-
-routes.routes = {};
-routes.routes.user = require(__dirname + '/routes/user.js')(controllers.user, passport);
-
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(passport.initialize());
 app.use(passport.session());
-routes.router(app);
+
+const user = require('./routes/user');
+app.use('/api/user', user);
 
 const jwtStrategy = passportJwt.Strategy;
 const extractJwt = passportJwt.ExtractJwt;
