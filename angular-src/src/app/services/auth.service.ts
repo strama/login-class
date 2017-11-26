@@ -26,6 +26,10 @@ export class AuthService {
     localStorage.setItem('LOGIN_CLASS_KEY_TOKEN', token);
   }
 
+  loggedIn() {
+    return localStorage.getItem('LOGIN_CLASS_KEY_TOKEN') != null;
+  }
+
   logout() {
     localStorage.clear();
   }
