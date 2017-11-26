@@ -11,14 +11,17 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { UsersComponent } from './components/users/users.component';
 
 import { AuthService } from './services/auth.service';
-import { RegisterComponent } from './components/register/register.component';
+import { UserService } from './services/user.service';
 
 const appRoot = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent }
+  { path: 'register', component: RegisterComponent },
+  { path: 'users', component: UsersComponent }
 ];
 
 @NgModule({
@@ -28,7 +31,8 @@ const appRoot = [
     FooterComponent,
     HomeComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +42,8 @@ const appRoot = [
     FlashMessagesModule.forRoot()
   ],
   providers: [
-    AuthService
+    AuthService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })
