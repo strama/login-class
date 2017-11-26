@@ -13,10 +13,12 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 
 import { AuthService } from './services/auth.service';
+import { RegisterComponent } from './components/register/register.component';
 
 const appRoot = [
   { path: '', component: HomeComponent },
-  { path: 'login', component: LoginComponent }
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent }
 ];
 
 @NgModule({
@@ -25,7 +27,8 @@ const appRoot = [
     NavbarComponent,
     FooterComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
