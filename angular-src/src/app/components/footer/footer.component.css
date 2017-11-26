@@ -24,11 +24,11 @@ footer ul li a:hover {
   text-decoration: none;
 }
 
-.footer {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
+.fixed-footer {
+  position: fixed;
+  left: 0px;
+  bottom: 0px;
+  width: 100%;
 }
 
 .footer-top .fa {
