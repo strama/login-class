@@ -9,11 +9,11 @@ export class HomeComponent implements OnInit {
 
   constructor() { }
 
-  apis = [
-    { route: '/api/user/login', name: 'POST Login' },
-    { route: '/api/user/register', name: 'POST Register' },
-    { route: '/api/user/auth', name: 'POST Auth' }
-  ];
+  // apis = [
+  //   { route: '/api/user/login', name: 'POST Login' },
+  //   { route: '/api/user/register', name: 'POST Register' },
+  //   { route: '/api/user/auth', name: 'POST Auth' }
+  // ];
 
   ngOnInit() {
   }
