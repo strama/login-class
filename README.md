@@ -1,11 +1,11 @@
 # FIAP Class
 A simple application that uses Node.js, Express and MongoDB.
 
-Base URL: https://fiap-class.mybluemix.net
+Base URL: https://login-class.mybluemix.net
 
 Use Header => 'Content-Type' with 'application/json'
 
-## <Base-URL>/api/user/login (POST)
+## (POST) <Base-URL>/api/auth/login
 Parameters:
 - email (String)
 - password (String)
@@ -16,7 +16,17 @@ Return (JSON):
 - token (String - If login success)
 - user (Object - If login success)
 
-## <Base-URL>/api/user/register (POST)
+## (GET) <Base-URL>/api/auth/login
+Headers: Add 'Authorization' with token to request this API
+
+Parameters: No parameters
+
+Return (JSON):
+- success (Boolean)
+- message (String)
+- user (Object)
+
+## (POST) <Base-URL>/api/auth/register
 Parameters:
 - email (String)
 - password (String)
@@ -27,10 +37,36 @@ Return (JSON):
 - success (Boolean)
 - message (String)
 
-## <Base-URL>/api/user/auth (POST)
-Headers: Add 'Authorization' with token to request this API
-
+## (GET) <Base-URL>/api/users/user
 Parameters: No parameters
+
+Return (JSON):
+- success (Boolean)
+- message (String)
+- user (Array<Object>)
+
+## (GET) <Base-URL>/api/users/user/<_id>
+Parameters: No parameters
+
+Return (JSON):
+- success (Boolean)
+- message (String)
+- user (Object)
+
+## (DELETE) <Base-URL>/api/users/user/<_id>
+Parameters: No parameters
+
+Return (JSON):
+- success (Boolean)
+- message (String)
+
+## (PUT) <Base-URL>/api/users/user
+Parameters: 
+- _id (String)
+- email (String - optional param)
+- password (String - optional param)
+- name (String - optional param)
+- last_name (String - optional param)
 
 Return (JSON):
 - success (Boolean)
