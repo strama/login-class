@@ -1,4 +1,4 @@
-# FIAP Class
+# Login Class
 A simple application that uses Node.js, Express and MongoDB.
 
 Base URL: https://login-class.mybluemix.net
@@ -43,7 +43,7 @@ Parameters: No parameters
 Return (JSON):
 - success (Boolean)
 - message (String)
-- user (Array<Object>)
+- user (Array)
 
 ## (GET) <Base-URL>/api/users/user/<_id>
 Parameters: No parameters
