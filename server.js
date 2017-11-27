@@ -40,7 +40,7 @@ app.use('/api/users', user);
 const auth = require('./routes/auth');
 app.use('/api/auth', auth);
 
-app.use(express.static(path.join('public', __dirname)));
+app.use(express.static(path.join(__dirname, 'public')));
 
 /**
  * Passport authentication

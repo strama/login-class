@@ -10,14 +10,14 @@ export class AuthService {
   authenticate(user: Object) {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this.http.post('http://localhost:8080/api/auth/login', user, { headers: headers })
+    return this.http.post('/api/auth/login', user, { headers: headers })
     .map(res => res.json());
   }
 
   registerAccount(user: Object) {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this.http.post('http://localhost:8080/api/auth/register', user, { headers: headers })
+    return this.http.post('/api/auth/register', user, { headers: headers })
     .map(res => res.json());
   }
 

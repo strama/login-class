@@ -9,28 +9,28 @@ export class UserService {
   fetchUsers() {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this.http.get('http://localhost:8080/api/users/user', { headers: headers })
+    return this.http.get('/api/users/user', { headers: headers })
     .map(res => res.json());
   }
 
   getSingleUser(id: string) {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this.http.get('http://localhost:8080/api/users/user/' + id, { headers: headers })
+    return this.http.get('/api/users/user/' + id, { headers: headers })
     .map(res => res.json());
   }
 
   updateUser(user: Object) {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this.http.put('http://localhost:8080/api/users/user', user, { headers: headers })
+    return this.http.put('/api/users/user', user, { headers: headers })
     .map(res => res.json());
   }
 
   deleteUser(id: string) {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this.http.delete('http://localhost:8080/api/users/user/' + id, { headers: headers })
+    return this.http.delete('/api/users/user/' + id, { headers: headers })
     .map(res => res.json());
   }
 

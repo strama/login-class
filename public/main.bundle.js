@@ -659,13 +659,13 @@ var AuthService = (function () {
     AuthService.prototype.authenticate = function (user) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
         headers.append('Content-Type', 'application/json');
-        return this.http.post('http://localhost:8080/api/auth/login', user, { headers: headers })
+        return this.http.post('/api/auth/login', user, { headers: headers })
             .map(function (res) { return res.json(); });
     };
     AuthService.prototype.registerAccount = function (user) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
         headers.append('Content-Type', 'application/json');
-        return this.http.post('http://localhost:8080/api/auth/register', user, { headers: headers })
+        return this.http.post('/api/auth/register', user, { headers: headers })
             .map(function (res) { return res.json(); });
     };
     AuthService.prototype.storeData = function (user, token) {
@@ -714,25 +714,25 @@ var UserService = (function () {
     UserService.prototype.fetchUsers = function () {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
         headers.append('Content-Type', 'application/json');
-        return this.http.get('http://localhost:8080/api/users/user', { headers: headers })
+        return this.http.get('/api/users/user', { headers: headers })
             .map(function (res) { return res.json(); });
     };
     UserService.prototype.getSingleUser = function (id) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
         headers.append('Content-Type', 'application/json');
-        return this.http.get('http://localhost:8080/api/users/user/' + id, { headers: headers })
+        return this.http.get('/api/users/user/' + id, { headers: headers })
             .map(function (res) { return res.json(); });
     };
     UserService.prototype.updateUser = function (user) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
         headers.append('Content-Type', 'application/json');
-        return this.http.put('http://localhost:8080/api/users/user', user, { headers: headers })
+        return this.http.put('/api/users/user', user, { headers: headers })
             .map(function (res) { return res.json(); });
     };
     UserService.prototype.deleteUser = function (id) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
         headers.append('Content-Type', 'application/json');
-        return this.http.delete('http://localhost:8080/api/users/user/' + id, { headers: headers })
+        return this.http.delete('/api/users/user/' + id, { headers: headers })
             .map(function (res) { return res.json(); });
     };
     UserService = __decorate([
