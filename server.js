@@ -10,6 +10,8 @@ const bodyParser = require('body-parser');
 const passport = require('passport');
 // https://github.com/themikenicholson/passport-jwt
 const passportJwt = require('passport-jwt');
+// https://nodejs.org/api/path.html
+const path = require('path');
 
 /**
  * Mongo & Mongoose config
@@ -37,6 +39,8 @@ app.use('/api/users', user);
 
 const auth = require('./routes/auth');
 app.use('/api/auth', auth);
+
+app.use(express.static(path.join('public', __dirname)));
 
 /**
  * Passport authentication
