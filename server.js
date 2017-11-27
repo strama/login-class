@@ -25,24 +25,29 @@ mongoose.connection.once('open', () => {
  * Express
  */
 const app = express();
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
 app.use(bodyParser.json());
 app.use(passport.initialize());
 app.use(passport.session());
 
-const user = require('./routes/user');
-app.use('/api/user', user);
+const user = require('./routes/users');
+app.use('/api/users', user);
+
+const auth = require('./routes/auth');
+app.use('/api/auth', auth);
 
 /**
  * Passport authentication
  */
 let options = {
     jwtFromRequest: passportJwt.ExtractJwt.fromAuthHeader(),
-    secretOrKey: 'FIAPClassAuth'
+    secretOrKey: 'LOGIN_CLASS_SERVICE_APPLICATION'
 };
 
 passport.use(new passportJwt.Strategy(options, (jwt_payload, done) => {
-    const User = schemas.user;
+    const User = require('./models/user');
     User.findById(jwt_payload._doc._id, (err, user) => {
         if (err) return done(err, false);
         if (user) {
@@ -57,8 +62,8 @@ passport.use(new passportJwt.Strategy(options, (jwt_payload, done) => {
  * Server config
  */
 const port = process.env.PORT || 8080;
-const host = '0.0.0.0';
+const host = process.env.HOST || '0.0.0.0';
 
 app.listen(port, host, () => {
-    console.log(`FIAP Class server is up running at ${host}:${port}`);
+    console.log(`Login Class server is up running at ${host}:${port}`);
 });
