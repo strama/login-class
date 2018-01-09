@@ -1,3 +1,7 @@
+# Compiled files
+public/
+package-lock.json
+
 # Logs
 logs
 *.log

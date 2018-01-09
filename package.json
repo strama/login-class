@@ -1,10 +1,10 @@
 {
-    "name": "FIAPClass",
-    "description": "FIAP Class - API",
+    "name": "login-class",
+    "description": "Backend for Android and Xamarin class at FIAP",
     "author": "Victor Shinya <contato@victorshinya.com.br>",
-    "version": "0.0.1",
-    "license": "Apache-2.0",
-    "repository": "https://github.com/victorshinya/fiap-class",
+    "version": "1.0.0",
+    "license": "MIT",
+    "repository": "https://github.com/victorshinya/login-class",
     "main": "server.js",
     "scripts": {
         "start": "node server.js"
