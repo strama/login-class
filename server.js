@@ -13,9 +13,7 @@ const passportJwt = require('passport-jwt');
 // https://nodejs.org/api/path.html
 const path = require('path');
 
-/**
- * Mongo & Mongoose config
- */
+// Set up Mongo & Mongoose config
 mongoose.connect(process.env.MONGODB, {
     useMongoClient: true
 });
@@ -23,9 +21,7 @@ mongoose.connection.on('error', console.error.bind(console, 'MongoDB connection 
 mongoose.connection.once('open', () => {
     console.log('MongoDB connected');
 });
-/**
- * Express
- */
+// Set up Express.js
 const app = express();
 app.use(bodyParser.urlencoded({
     extended: false
@@ -41,10 +37,11 @@ const auth = require('./routes/auth');
 app.use('/api/auth', auth);
 
 app.use(express.static(path.join(__dirname, 'public')));
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public/index.html'));
+});
 
-/**
- * Passport authentication
- */
+// Passport authentication
 let options = {
     jwtFromRequest: passportJwt.ExtractJwt.fromAuthHeader(),
     secretOrKey: 'LOGIN_CLASS_SERVICE_APPLICATION'
@@ -62,9 +59,7 @@ passport.use(new passportJwt.Strategy(options, (jwt_payload, done) => {
     });
 }));
 
-/**
- * Server config
- */
+// Server config
 const port = process.env.PORT || 8080;
 const host = process.env.HOST || '0.0.0.0';
 
