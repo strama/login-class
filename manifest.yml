@@ -1,0 +1,8 @@
+---
+applications:
+- name: login-class
+  memory: 128M
+  host: login-class
+  domain: mybluemix.net
+  command: node server.js
+  timeout: 180
