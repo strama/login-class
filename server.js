@@ -28,10 +28,9 @@ app.use('/api', user);
 const auth = require('./routes/auth');
 app.use('/api', auth);
 
-app.use(express.static(path.join(__dirname, 'public')));
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public/index.html'));
-});
+app.get('/', (req, res, next) => {
+    res.json({name:'login-class', version: '1.0.0'})
+})
 
 // Passport authentication
 let options = {
