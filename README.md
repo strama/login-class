@@ -5,7 +5,7 @@ Base URL: https://login-class.mybluemix.net
 
 Use Header => 'Content-Type' with 'application/json'
 
-## (POST) <Base-URL>/api/auth/login
+## (POST) <Base-URL>/api/login
 Parameters:
 - email (String)
 - password (String)
@@ -16,7 +16,7 @@ Return (JSON):
 - token (String - If login success)
 - user (Object - If login success)
 
-## (GET) <Base-URL>/api/auth/login
+## (GET) <Base-URL>/api/login
 Headers: Add 'Authorization' with token to request this API
 
 Parameters: No parameters
@@ -26,7 +26,7 @@ Return (JSON):
 - message (String)
 - user (Object)
 
-## (POST) <Base-URL>/api/auth/register
+## (POST) <Base-URL>/api/users
 Parameters:
 - email (String)
 - password (String)
@@ -37,7 +37,7 @@ Return (JSON):
 - success (Boolean)
 - message (String)
 
-## (GET) <Base-URL>/api/users/user
+## (GET) <Base-URL>/api/users
 Parameters: No parameters
 
 Return (JSON):
@@ -45,7 +45,7 @@ Return (JSON):
 - message (String)
 - user (Array)
 
-## (GET) <Base-URL>/api/users/user/<_id>
+## (GET) <Base-URL>/api/users/<_id>
 Parameters: No parameters
 
 Return (JSON):
@@ -53,14 +53,14 @@ Return (JSON):
 - message (String)
 - user (Object)
 
-## (DELETE) <Base-URL>/api/users/user/<_id>
+## (DELETE) <Base-URL>/api/users/<_id>
 Parameters: No parameters
 
 Return (JSON):
 - success (Boolean)
 - message (String)
 
-## (PUT) <Base-URL>/api/users/user
+## (PUT) <Base-URL>/api/users/<_id>
 Parameters: 
 - _id (String)
 - email (String - optional param)

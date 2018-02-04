@@ -9,7 +9,80 @@ const User = require('../models/user');
 // Router
 const router = express.Router();
 
-router.get('/user', (req, res) => {
+router.post('/users', (req, res) => {
+    const email = req.body.email;
+    const name = req.body.name;
+    const lastName = req.body.last_name;
+
+    bcrypt.genSalt(10, (err, salt) => {
+        bcrypt.hash(req.body.password, salt, (err, hash) => {
+            if (err) return res.json({
+                success: false,
+                message: err
+            });
+            const password = hash;
+
+            if (!email)
+                return res.json({
+                    success: false,
+                    message: 'E-mail was not provided'
+                });
+
+            if (!password)
+                return res.json({
+                    success: false,
+                    message: 'Password was not provided'
+                });
+
+            if (!name)
+                return res.json({
+                    success: false,
+                    message: 'Name was not provided'
+                });
+
+            if (!lastName)
+                return res.json({
+                    success: false,
+                    message: 'Last name was not provided'
+                });
+
+            const query = {
+                email: email
+            };
+            User.findOne(query, (err, result) => {
+                if (err) return res.json({
+                    success: false,
+                    message: err
+                });
+
+                if (!result) {
+                    var user = new User();
+                    user.email = email;
+                    user.password = password;
+                    user.name = name;
+                    user.last_name = lastName;
+                    user.save(err => {
+                        if (err) return res.json({
+                            success: false,
+                            message: 'Failed to register a new user'
+                        });
+                        return res.json({
+                            success: true,
+                            message: 'Ok'
+                        });
+                    });
+                } else {
+                    return res.json({
+                        success: false,
+                        message: 'E-mail already in use'
+                    })
+                }
+            });
+        });
+    });
+});
+
+router.get('/users', (req, res) => {
     User.find({}, '-password', (err, result) => {
         if (err) return res.json({
             success: false,
@@ -30,7 +103,7 @@ router.get('/user', (req, res) => {
     });
 });
 
-router.get('/user/:id', (req, res) => {
+router.get('/users/:id', (req, res) => {
     User.findById(req.params.id, (err, result) => {
         if (err) return res.json({
             success: false,
@@ -51,7 +124,7 @@ router.get('/user/:id', (req, res) => {
     });
 });
 
-router.delete('/user/:id', (req, res) => {
+router.delete('/users/:id', (req, res) => {
     User.findByIdAndRemove(req.params.id, (err, result) => {
         if (err) return res.json({
             success: false,
@@ -71,8 +144,8 @@ router.delete('/user/:id', (req, res) => {
     });
 });
 
-router.put('/user', (req, res) => {
-    const _id = req.body._id;
+router.put('/users/:id', (req, res) => {
+    const _id = req.params.id;
     if (!_id)
         return res.json({
             success: false,
@@ -99,13 +172,13 @@ router.put('/user', (req, res) => {
                         success: false,
                         message: err
                     });
-            
+
                     if (!result)
                         return res.json({
                             success: false,
                             message: 'Could not update the user'
                         });
-            
+
                     return res.json({
                         success: true,
                         message: 'ok',
@@ -125,13 +198,13 @@ router.put('/user', (req, res) => {
                 success: false,
                 message: err
             });
-    
+
             if (!result)
                 return res.json({
                     success: false,
                     message: 'Could not update the user'
                 });
-    
+
             return res.json({
                 success: true,
                 message: 'ok',

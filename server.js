@@ -1,7 +1,5 @@
 // https://github.com/expressjs/express
 const express = require('express');
-// https://github.com/Automattic/mongoose
-const mongoose = require('mongoose');
 // https://github.com/motdotla/dotenv
 const dotenv = require('dotenv').load();
 // https://github.com/expressjs/body-parser
@@ -12,15 +10,9 @@ const passport = require('passport');
 const passportJwt = require('passport-jwt');
 // https://nodejs.org/api/path.html
 const path = require('path');
+// Get MongoDB config
+const mongodb = require('./databases/mongodb')
 
-// Set up Mongo & Mongoose config
-mongoose.connect(process.env.MONGODB, {
-    useMongoClient: true
-});
-mongoose.connection.on('error', console.error.bind(console, 'MongoDB connection error:'));
-mongoose.connection.once('open', () => {
-    console.log('MongoDB connected');
-});
 // Set up Express.js
 const app = express();
 app.use(bodyParser.urlencoded({
@@ -30,11 +22,11 @@ app.use(bodyParser.json());
 app.use(passport.initialize());
 app.use(passport.session());
 
-const user = require('./routes/users');
-app.use('/api/users', user);
+const user = require('./routes/user');
+app.use('/api', user);
 
 const auth = require('./routes/auth');
-app.use('/api/auth', auth);
+app.use('/api', auth);
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.get('*', (req, res) => {
