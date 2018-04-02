@@ -4,14 +4,13 @@
     "author": "Victor Shinya <contato@victorshinya.com.br>",
     "version": "1.0.0",
     "license": "MIT",
-    "repository": "https://github.com/victorshinya/login-class",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/victorshinya/login-class"
+    },
     "main": "server.js",
     "scripts": {
         "start": "node server.js"
-    },
-    "engines": {
-        "node": "ˆ8.x",
-        "npm": "ˆ5.x"
     },
     "dependencies": {
         "bcryptjs": "^2.4.3",
@@ -23,7 +22,8 @@
         "passport": "^0.4.0",
         "passport-jwt": "^2.2.1"
     },
-    "devDependencies": {
-        "@angular/cli": "^1.5.3"
+    "engines": {
+        "node": "9.10.1",
+        "npm": "5.7.1"
     }
 }
