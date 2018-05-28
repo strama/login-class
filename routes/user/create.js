@@ -19,56 +19,19 @@ module.exports = (req, res) => {
                 message: err.message
             })
             const password = hash
-
-            if (!email)
-                return res.json({
-                    success: false,
-                    message: 'E-mail was not provided'
-                })
-
-            if (!password)
-                return res.json({
-                    success: false,
-                    message: 'Password was not provided'
-                })
-
-            if (!name)
-                return res.json({
-                    success: false,
-                    message: 'Name was not provided'
-                })
-
-            if (!lastName)
-                return res.json({
-                    success: false,
-                    message: 'Last name was not provided'
-                })
-
-            User.findOne({ email: email }, (err, result) => {
+            var user = new User()
+            user.email = email
+            user.password = password
+            user.name = name
+            user.last_name = lastName
+            user.save(err => {
                 if (err) return res.json({
                     success: false,
-                    message: err.message
+                    message: 'Failed to register a new user'
                 })
-
-                if (result) return res.json({
-                    success: false,
-                    message: 'E-mail already in use'
-                })
-
-                var user = new User()
-                user.email = email
-                user.password = password
-                user.name = name
-                user.last_name = lastName
-                user.save(err => {
-                    if (err) return res.json({
-                        success: false,
-                        message: 'Failed to register a new user'
-                    })
-                    return res.json({
-                        success: true,
-                        message: 'Ok'
-                    })
+                return res.json({
+                    success: true,
+                    message: 'Ok'
                 })
             })
         })
