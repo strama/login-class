@@ -1,16 +1,15 @@
 // https://github.com/dcodeIO/bcrypt.js
 const bcrypt = require('bcryptjs')
 // https://github.com/expressjs/express
-const express = require('express')
-const router = express.Router()
+const router = require('express').Router()
 // https://github.com/auth0/node-jsonwebtoken
 const jwt = require('jsonwebtoken')
 // https://github.com/jaredhanson/passport
 const passport = require('passport')
-// Model
-const User = require('../models/user')
+// Mongoose model
+const User = require('../../databases/models/user')
 
-router.post('/auth', (req, res) => {
+module.exports = (req, res) => {
     const email = req.body.email
     const password = req.body.password
 
@@ -66,21 +65,4 @@ router.post('/auth', (req, res) => {
         })
 
     })
-})
-
-router.get('/auth', passport.authenticate('jwt', {
-    session: false
-}), (req, res) => {
-    return res.json({
-        success: true,
-        message: 'Ok',
-        user: {
-            _id: req.user._id,
-            email: req.user.email,
-            name: req.user.name,
-            last_name: req.user.last_name
-        }
-    })
-})
-
-module.exports = router
+}
