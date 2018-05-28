@@ -1,6 +1,6 @@
 {
     "name": "login-class",
-    "description": "Backend for Android and Xamarin class at FIAP",
+    "description": "Backend for Android, iOS and Xamarin class at FIAP",
     "author": "Victor Shinya <contato@victorshinya.com.br>",
     "version": "1.0.0",
     "license": "MIT",
@@ -14,16 +14,16 @@
     },
     "dependencies": {
         "bcryptjs": "^2.4.3",
-        "body-parser": "^1.17.2",
+        "body-parser": "^1.18.3",
         "dotenv": "^4.0.0",
-        "express": "^4.15.3",
-        "jsonwebtoken": "^7.4.2",
-        "mongoose": "^4.11.1",
+        "express": "^4.16.3",
+        "jsonwebtoken": "^7.4.3",
+        "mongoose": "^4.13.14",
         "passport": "^0.4.0",
         "passport-jwt": "^2.2.1"
     },
     "engines": {
-        "node": "9.10.1",
-        "npm": "5.7.1"
+        "node": "10.2.1",
+        "npm": "5.6.0"
     }
 }

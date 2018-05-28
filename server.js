@@ -22,24 +22,17 @@ app.use(bodyParser.json())
 app.use(passport.initialize())
 app.use(passport.session())
 
-const user = require('./routes/user')
-app.use('/api', user)
-
-const auth = require('./routes/auth')
-app.use('/api', auth)
-
-app.get('/', (req, res, next) => {
-    res.json({ name: 'login-class', version: '1.0.0' })
-})
+const routes = require('./routes/index')
+app.use('/api', routes)
 
 // Passport authentication
 let options = {
     jwtFromRequest: passportJwt.ExtractJwt.fromAuthHeader(),
-    secretOrKey: 'LOGIN_CLASS_SERVICE_APPLICATION'
+    secretOrKey: 'LOGIN_CLASS_SERVICE_APPLICATION_SECRET_OR_KEY'
 }
 
 passport.use(new passportJwt.Strategy(options, (jwt_payload, done) => {
-    const User = require('./models/user')
+    const User = require('./databases/models/user')
     User.findById(jwt_payload._doc._id, (err, user) => {
         if (err) return done(err, false)
         if (user) {
@@ -52,7 +45,7 @@ passport.use(new passportJwt.Strategy(options, (jwt_payload, done) => {
 
 // Server config
 const host = process.env.HOST || '0.0.0.0',
-    port = process.env.PORT || 3000
+    port = process.env.VCAP_APP_PORT || process.env.PORT || 3000
 
 app.listen(port, host, () => {
     console.log(`Login Class server is up running at ${host}:${port}`)
